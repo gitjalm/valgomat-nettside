@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#content {
+    padding: 2%;
+    margin: 20vh 20vw 20vh 20vw;
+    text-align: center;
+    border: 1px solid darkgrey;
+    border-radius: 10px;
+}
+
+#container {
+    margin: 10%;
+}
+
+#title {
+    font-size: 2.5vw;
+    margin-bottom: 2vh;
+}
+
+#description {
+    font-size: 1.5vw;
+    margin-bottom: 4vh;
+}
+
+#question {
+    font-size: 1.2vw;
+    margin-bottom: 4vh;
+}
+
+.buttons {
+    margin: 1vh 0.75vw;
+    padding: 1%;
+    width: 3.5vw;
+    height: 3.5vw;
+    border-radius: 25px;
+    border: 1px solid darkgrey;
+    background-color: transparent;
+    transition: background-color 0.3s;
+}
+
+.buttons:hover {
+    background-color: rgba(180, 180, 180, 0.544);
+    cursor: pointer;
+}
+
+.buttons > p {
+    margin-top: 3.5vw;
+    font-size: 1vw;
+}
