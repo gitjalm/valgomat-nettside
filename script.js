@@ -50,3 +50,20 @@ let questions = [
         userAnswer: ""
     },
 ]
+
+let questionIndex = 0;
+
+function showQuestion() {
+    if (questionIndex < questions.length) {
+        document.getElementById("question").innerText = questions[questionIndex].question;
+        questionIndex++;
+    } else {
+        document.getElementById("question").innerText = "Takk for at du tok valgomaten!";
+        // Add logic to display a end screen.
+    }
+}
+
+const buttons = document.getElementsByClassName("buttons");
+for (let btn of buttons) {
+    btn.addEventListener("click", showQuestion);
+}
