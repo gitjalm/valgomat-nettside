@@ -56,6 +56,7 @@ let questionIndex = 0;
 function showQuestion() {
     if (questionIndex < questions.length) {
         document.getElementById("question").innerText = questions[questionIndex].question;
+        updateQuestionIndex();
         questionIndex++;
     } else {
         document.getElementById("question").innerText = "Takk for at du tok valgomaten!";
@@ -67,3 +68,9 @@ const buttons = document.getElementsByClassName("buttons");
 for (let btn of buttons) {
     btn.addEventListener("click", showQuestion);
 }
+
+function updateQuestionIndex() {
+    document.getElementById("question-index").innerText = questionIndex + 1 + "/" + questions.length;
+}
+
+updateQuestionIndex();
