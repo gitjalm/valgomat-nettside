@@ -73,4 +73,17 @@ function updateQuestionIndex() {
     document.getElementById("question-index").innerText = questionIndex + 1 + "/" + questions.length;
 }
 
+document.getElementById("next-button").addEventListener("click", function() {
+    if (questionIndex <= questions.length) {
+        showQuestion();
+    }
+})
+
+document.getElementById("previous-button").addEventListener("click", function() {
+    if (questionIndex > 1) {
+        questionIndex -= 2;
+        showQuestion();
+    }
+})
+
 updateQuestionIndex();
