@@ -91,7 +91,8 @@ function initStartButton() {
 function initButtons() {
     const buttons = document.getElementsByClassName("choice-buttons");
     for (let btn of buttons) {
-        btn.addEventListener("click", showQuestion);
+        const id = btn.id;
+        btn.addEventListener("click", function() { choiceSelected(id); });
     }
 
     document.getElementById("next-button").addEventListener("click", function() {
@@ -117,6 +118,16 @@ function showQuestion() {
         document.getElementById("question").innerText = "Takk for at du tok valgomaten!";
         // Add logic to display a end screen.
     }
+}
+
+function choiceSelected(choice) {
+    if (questionIndex > questions.lenth) {
+        console.log("There is no more questions.");
+        return;
+    } else {
+        questions[questionIndex - 1].userAnswer = choice;
+    }
+    showQuestion();
 }
 
 function updateQuestionIndex() {
