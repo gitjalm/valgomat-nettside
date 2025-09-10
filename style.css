@@ -32,7 +32,7 @@
     min-height: 5vh;
 }
 
-.buttons {
+.choice-buttons {
     margin: 1vh 1.25vw;
     padding: 1%;
     width: 3.5vw;
@@ -43,17 +43,17 @@
     transition: background-color 0.3s;
 }
 
-.buttons:hover {
+.choice-buttons:hover {
     background-color: #209bff;
     cursor: pointer;
 }
 
-.buttons > p {
+.choice-buttons > p {
     margin-top: 3.5vw;
     font-size: 1vw;
 }
 
-.nxt-pre-button {
+.nxt-pre-strt-button {
     margin: 2vh 0.75vw;
     padding: 1%;
     width: 6vw;
@@ -65,7 +65,7 @@
     transition: background-color 0.3s;
 }
 
-.nxt-pre-button:hover {
+.nxt-pre-strt-button:hover {
     background-color: transparent;
     color: #209bff;
     border: 2px solid #209bff;

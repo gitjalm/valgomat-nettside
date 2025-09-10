@@ -53,6 +53,61 @@ let questions = [
 
 let questionIndex = 0;
 
+function startPage() {
+    document.getElementById("content").innerHTML += `
+        <button class="nxt-pre-strt-button" id="start-button">Start</button>`;
+    initStartButton();
+}
+
+function loadContent() {
+    document.getElementById("content").innerHTML = `
+        <p id="question-index"></p>
+        <h1 id="title">Valgomat</h1>
+        <p id="description">Finn ut hvor enig du er med Frp!</p>
+        <div id="container">
+            <div id="question"></div>
+            <div id="buttons">
+                <button class="choice-buttons" id="helt-uening"><p>Helt uenig</p></button>
+                <button class="choice-buttons" id="litt-uenig"><p>Litt uenig</p></button>
+                <button class="choice-buttons" id="vet-ikke"><p>Vet Ikke</p></button>
+                <button class="choice-buttons" id="litt-enig"><p>Litt enig</p></button>
+                <button class="choice-buttons" id="helt-enig"><p>Helt enig</p></button>
+            </div>
+        </div>
+        <div>
+            <button class="nxt-pre-strt-button" id="previous-button">Tilbake</button>
+            <button class="nxt-pre-strt-button" id="next-button">Neste</button>
+        </div>`;
+    showQuestion();
+    initButtons();
+}
+
+function initStartButton() {
+    document.getElementById("start-button").addEventListener("click", function() {
+        loadContent();
+    });
+}
+
+function initButtons() {
+    const buttons = document.getElementsByClassName("choice-buttons");
+    for (let btn of buttons) {
+        btn.addEventListener("click", showQuestion);
+    }
+
+    document.getElementById("next-button").addEventListener("click", function() {
+        if (questionIndex <= questions.length) {
+            showQuestion();
+        }
+    })
+
+    document.getElementById("previous-button").addEventListener("click", function() {
+        if (questionIndex > 1) {
+            questionIndex -= 2;
+            showQuestion();
+        }
+    })
+}
+
 function showQuestion() {
     if (questionIndex < questions.length) {
         document.getElementById("question").innerText = questions[questionIndex].question;
@@ -64,26 +119,10 @@ function showQuestion() {
     }
 }
 
-const buttons = document.getElementsByClassName("buttons");
-for (let btn of buttons) {
-    btn.addEventListener("click", showQuestion);
-}
-
 function updateQuestionIndex() {
     document.getElementById("question-index").innerText = questionIndex + 1 + "/" + questions.length;
 }
 
-document.getElementById("next-button").addEventListener("click", function() {
-    if (questionIndex <= questions.length) {
-        showQuestion();
-    }
-})
-
-document.getElementById("previous-button").addEventListener("click", function() {
-    if (questionIndex > 1) {
-        questionIndex -= 2;
-        showQuestion();
-    }
-})
-
-updateQuestionIndex();
+document.addEventListener('DOMContentLoaded', () => {
+    startPage();
+});
