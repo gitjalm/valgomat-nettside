@@ -59,6 +59,13 @@ function startPage() {
     initStartButton();
 }
 
+function endPage() {
+    document.getElementById("content").innerHTML = `
+        <h1 id="title">Resultat</h1>
+        <p id="description">Takk for at du tok valgomaten!</p>
+    `;
+}
+
 function loadContent() {
     document.getElementById("content").innerHTML = `
         <p id="question-index"></p>
@@ -124,7 +131,7 @@ function showQuestion() {
         updateQuestionIndex();
     } else {
         document.getElementById("question").innerText = "Takk for at du tok valgomaten!";
-        // Add logic to display a end screen.
+        endPage();
     }
 }
 
