@@ -78,33 +78,42 @@ function loadContent() {
             <button class="nxt-pre-strt-button" id="previous-button">Tilbake</button>
             <button class="nxt-pre-strt-button" id="next-button">Neste</button>
         </div>`;
-    showQuestion();
-    initButtons();
 }
 
 function initStartButton() {
     document.getElementById("start-button").addEventListener("click", function() {
         loadContent();
+        showQuestion();
+        initButtons();
     });
 }
 
 function initButtons() {
-    const buttons = document.getElementsByClassName("choice-buttons");
-    for (let btn of buttons) {
-        const id = btn.id;
-        btn.addEventListener("click", function() { choiceSelected(id); });
-    }
+    const buttons = document.getElementById("buttons");
+    buttons.addEventListener('click', function(event) {
+        if (event.target.classList.contains('choice-buttons')) {
+            const currentSelected = buttons.querySelector('.selected');
+            if (currentSelected) {
+                currentSelected.classList.remove('selected');
+            }
+            event.target.classList.add('selected');
+            choiceSelected(event.target.id);
+        }
+    })
 
     document.getElementById("next-button").addEventListener("click", function() {
         if (questionIndex <= questions.length) {
+            questionIndex++;
             showQuestion();
+            restoreSelected();
         }
     })
 
     document.getElementById("previous-button").addEventListener("click", function() {
-        if (questionIndex > 1) {
-            questionIndex -= 2;
+        if (questionIndex > 0) {
+            questionIndex--;
             showQuestion();
+            restoreSelected();
         }
     })
 }
@@ -113,7 +122,6 @@ function showQuestion() {
     if (questionIndex < questions.length) {
         document.getElementById("question").innerText = questions[questionIndex].question;
         updateQuestionIndex();
-        questionIndex++;
     } else {
         document.getElementById("question").innerText = "Takk for at du tok valgomaten!";
         // Add logic to display a end screen.
@@ -121,13 +129,24 @@ function showQuestion() {
 }
 
 function choiceSelected(choice) {
-    if (questionIndex > questions.lenth) {
+    if (questionIndex > questions.length) {
         console.log("There is no more questions.");
         return;
     } else {
-        questions[questionIndex - 1].userAnswer = choice;
+        questions[questionIndex].userAnswer = choice;
     }
-    showQuestion();
+}
+
+function restoreSelected() {
+    const buttons = document.querySelectorAll('.choice-buttons');
+    buttons.forEach(btn => btn.classList.remove('selected'));
+    const answer = questions[questionIndex - 1].userAnswer;
+    if (answer) {
+        const btn = document.getElementById(answer);
+        if (btn) {
+            btn.classList.add('selected');
+        }
+    }
 }
 
 function updateQuestionIndex() {
