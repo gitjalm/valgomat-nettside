@@ -140,7 +140,7 @@ function choiceSelected(choice) {
 function restoreSelected() {
     const buttons = document.querySelectorAll('.choice-buttons');
     buttons.forEach(btn => btn.classList.remove('selected'));
-    const answer = questions[questionIndex - 1].userAnswer;
+    const answer = questions[questionIndex].userAnswer;
     if (answer) {
         const btn = document.getElementById(answer);
         if (btn) {
