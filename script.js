@@ -64,7 +64,7 @@ function endPage() {
     document.getElementById("content").innerHTML = `
         <h1 id="title">Resultat</h1>
         <p id="description">Takk for at du tok valgomaten!</p>
-    `;
+        <h2 id="result">Du er ${score}% enig med Frp!</h2>`;
 }
 
 function loadContent() {
@@ -75,7 +75,7 @@ function loadContent() {
         <div id="container">
             <div id="question"></div>
             <div id="buttons">
-                <button class="choice-buttons" id="helt-uening"><p>Helt uenig</p></button>
+                <button class="choice-buttons" id="helt-uenig"><p>Helt uenig</p></button>
                 <button class="choice-buttons" id="litt-uenig"><p>Litt uenig</p></button>
                 <button class="choice-buttons" id="vet-ikke"><p>Vet Ikke</p></button>
                 <button class="choice-buttons" id="litt-enig"><p>Litt enig</p></button>
@@ -110,10 +110,14 @@ function initButtons() {
     })
 
     document.getElementById("next-button").addEventListener("click", function() {
-        if (questionIndex < questions.length) {
+        if (questionIndex < questions.length - 1) {
             questionIndex++;
             showQuestion();
             restoreSelected();
+        } else {
+            countScore();
+            console.log(score)
+            endPage();
         }
     })
 
@@ -127,17 +131,12 @@ function initButtons() {
 }
 
 function showQuestion() {
-    if (questionIndex < questions.length) {
-        document.getElementById("question").innerText = questions[questionIndex].question;
-        updateQuestionIndex();
-    } else {
-        countScore();
-        console.log(score)
-        endPage();
-    }
+    document.getElementById("question").innerText = questions[questionIndex].question;
+    updateQuestionIndex();
 }
 
 function countScore() {
+    score = 0;
     questions.forEach((question) => {
         if (question.answer === question.userAnswer) {
             console.log("correct")
