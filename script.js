@@ -1,57 +1,58 @@
 let questions = [
     {
         question: "Mener du at avgiftene bør senkes så du kan beholde mer av dine egne penger? ",
-        answer: "Helt Enig",
+        answer: "helt-enig",
         userAnswer: ""
     },
     {
         question: "Synes du innvandring har gjort Norge til et bedre land?",
-        answer: "Helt Uenig",
+        answer: "helt-uenig",
         userAnswer: ""
     },
     {
         question: "Vil du ha sterkere straffer for mobbere på skolen?",
-        answer: "Helt Enig",
+        answer: "helt-enig",
         userAnswer: ""
     },
     {
         question: "Mener du at vi bør begynne med kjernekraft i Norge?",
-        answer: "Helt Enig",
+        answer: "helt-enig",
         userAnswer: ""
     },
     {
         question: "Mener du at Norge bør melde seg ut av NATO?",
-        answer: "Helt Uenig",
+        answer: "helt-uenig",
         userAnswer: ""
     },
     {
         question: "Mener du at Norge har et stort problem med gjengkriminalitet?",
-        answer: "Helt Enig",
+        answer: "helt-enig",
         userAnswer: ""
     },
     {
         question: "Mener du at den kriminelle lav alderen bør senkes?",
-        answer: "Helt Enig",
+        answer: "helt-enig",
         userAnswer: ""
     },
     {
         question: "Mener du at Norge skal få strengere straffer?",
-        answer: "Helt Enig",
+        answer: "helt-enig",
         userAnswer: ""
     },
     {
         question: "Er det urettferdig at de som kan betale, får raskere behandling i helsevesenet?",
-        answer: "Litt Uenig",
+        answer: "litt-uenig",
         userAnswer: ""
     },
     {
         question: "Bør vi satse mer på kollektivtransport i Norge?",
-        answer: "Helt Uenig",
+        answer: "helt-uenig",
         userAnswer: ""
     },
 ]
 
 let questionIndex = 0;
+let score = 0;
 
 function startPage() {
     document.getElementById("content").innerHTML += `
@@ -109,7 +110,7 @@ function initButtons() {
     })
 
     document.getElementById("next-button").addEventListener("click", function() {
-        if (questionIndex <= questions.length) {
+        if (questionIndex < questions.length) {
             questionIndex++;
             showQuestion();
             restoreSelected();
@@ -130,9 +131,28 @@ function showQuestion() {
         document.getElementById("question").innerText = questions[questionIndex].question;
         updateQuestionIndex();
     } else {
-        document.getElementById("question").innerText = "Takk for at du tok valgomaten!";
+        countScore();
+        console.log(score)
         endPage();
     }
+}
+
+function countScore() {
+    questions.forEach((question) => {
+        if (question.answer === question.userAnswer) {
+            console.log("correct")
+            score += 10;
+        } else {
+            const splittedtext = question.answer.split("-")
+            const splittedtext2 = question.userAnswer.split("-")
+            if (splittedtext[1] === splittedtext2[1]) {
+                console.log("half correct")
+                score += 5;
+            } else {
+                console.log("incorrect")
+            }
+        }
+    });
 }
 
 function choiceSelected(choice) {
