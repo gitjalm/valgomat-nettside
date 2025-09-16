@@ -64,14 +64,14 @@ function endPage() {
     document.getElementById("content").innerHTML = `
         <h1 id="title">Resultat</h1>
         <p id="description">Takk for at du tok valgomaten!</p>
-        <h2 id="result">Du er ${score}% enig med Frp!</h2>`;
+        <h2 id="result">Du er ${score}% enig med FrP!</h2>`;
 }
 
 function loadContent() {
     document.getElementById("content").innerHTML = `
         <p id="question-index"></p>
         <h1 id="title">Valgomat</h1>
-        <p id="description">Finn ut hvor enig du er med Frp!</p>
+        <p id="description">Finn ut hvor enig du er med FrP!</p>
         <div id="container">
             <div id="question"></div>
             <div id="buttons">
