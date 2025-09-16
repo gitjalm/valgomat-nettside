@@ -5,7 +5,7 @@
 }
 
 body {
-    background-image: radial-gradient(circle, #209bff, #005f99);
+    background-image: radial-gradient(circle, #0072D1, #005f99);
 }
 
 #content {
@@ -43,18 +43,18 @@ body {
     width: 3.5vw;
     height: 3.5vw;
     border-radius: 25px;
-    border: 1px solid #209bff;
+    border: 1px solid #0072D1;
     background-color: transparent;
     transition: background-color 0.3s;
 }
 
 .choice-buttons:hover {
-    background-color: #209bff;
+    background-color: #0072D1;
     cursor: pointer;
 }
 
 .selected {
-    background-color: #209bff;
+    background-color: #0072D1;
 }
 
 .choice-buttons > p {
@@ -67,7 +67,7 @@ body {
     padding: 1%;
     width: 6vw;
     height: 3vw;
-    background-color: #209bff;
+    background-color: #0072D1;
     color: white;
     border: none;
     border-radius: 20px;
@@ -76,7 +76,7 @@ body {
 
 .nxt-pre-strt-button:hover {
     background-color: transparent;
-    color: #209bff;
-    border: 2px solid #209bff;
+    color: #0072D1;
+    border: 2px solid #0072D1;
     cursor: pointer;
 }
